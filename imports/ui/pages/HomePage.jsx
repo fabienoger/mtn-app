@@ -1,4 +1,5 @@
-import React from 'react';
+import React      from 'react';
+import LeafletMap from '/imports/ui/components/LeafletMap';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <div id="home-page">
-	<h1># Home</h1>
+        <LeafletMap />
       </div>
     )
   }
