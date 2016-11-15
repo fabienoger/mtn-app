@@ -1,4 +1,6 @@
 /* Remove border-radius */
-.leaflet-control-layers.leaflet-control, .leaflet-control-zoom.leaflet-bar.leaflet-control, .leaflet-bar a:first-child, .leaflet-bar a:last-child {
+.leaflet-control-layers.leaflet-control,
+.leaflet-control-zoom.leaflet-bar.leaflet-control,
+.leaflet-bar a:first-child, .leaflet-bar a:last-child {
   border-radius: 0 !important;
 }

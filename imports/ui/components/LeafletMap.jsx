@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react';
 import { render }         from 'react-dom';
 import L                  from 'leaflet';
 import MarkerClusterGroup from 'leaflet.markercluster';
+import FormationModal     from '/imports/ui/components/FormationModal';
+import Loading            from '/imports/ui/components/Loading';
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
@@ -9,6 +11,9 @@ import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 export default class LeafletMap extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      formation: null
+    }
   }
   componentDidMount() {
     /* Image configuration */
@@ -60,8 +65,16 @@ export default class LeafletMap extends React.Component {
   addFormations() {
     _.each(this.props.formations, (f) => {
       let marker = L.marker(f.localisation);
+      marker._id = f._id;
+      marker.on("click", (e) => {
+        this.setState({formation: f});
+      });
       this.markerCluster.addLayer(marker);
     });
+  }
+
+  closeModal() {
+    this.setState({formation: null});
   }
 
   render() {
@@ -76,7 +89,11 @@ export default class LeafletMap extends React.Component {
     };
 
     return(
-      <div id="LeafletMap" style={mapStyle}>
+      <div id="map-container">
+        <div id="LeafletMap" style={mapStyle}></div>
+        {this.state.formation ?
+          <FormationModal formation={this.state.formation} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
+        : ''}
       </div>
     )
   }

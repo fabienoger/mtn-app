@@ -4,9 +4,7 @@ import { Meteor }   from 'meteor/meteor';
 export default class Loading extends React.Component {
   render() {
     return (
-      <div>
-        Loading ...
-      </div>
+      <div className="loading"></div>
     )
   }
 }
