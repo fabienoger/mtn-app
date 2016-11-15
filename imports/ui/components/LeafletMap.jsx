@@ -1,18 +1,21 @@
-import React      from 'react';
-import { render } from 'react-dom';
-import L          from 'leaflet';
+import React, {PropTypes} from 'react';
+import { render }         from 'react-dom';
+import L                  from 'leaflet';
+import MarkerClusterGroup from 'leaflet.markercluster';
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+
 
 export default class LeafletMap extends React.Component {
   constructor(props) {
     super(props)
   }
   componentDidMount() {
-    console.log("L => ", L);
     /* Image configuration */
-    L.Icon.Default.imagePath = '/images/'
+   L.Icon.Default.imagePath = '/images/';
 
     /* Map initialization */
-    var map = L.map('LeafletMap').setView([51.505, -0.09], 13);
+    this.map = L.map('LeafletMap').setView([48.866667, 2.333333], 11);
     /* DEFAULT TILE LAYERS */
     var baseMaps = {
       "CartoDB": L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
@@ -39,17 +42,28 @@ export default class LeafletMap extends React.Component {
     };
 
     /* add baseMaps to controlLayer */
-    const controlLayer = new L.Control.Layers(baseMaps, {}, {
-        position: 'bottomright'
+    this.controlLayer = new L.Control.Layers(baseMaps, {}, {
+      position: 'bottomright'
     })
-    map.addControl(controlLayer);
+    this.map.addControl(this.controlLayer);
     /* Add default map */
-    baseMaps['OSM'].addTo(map);
-    this.setState({
-      map: map,
-      controlLayer: controlLayer
+    baseMaps['OSM'].addTo(this.map);
+    this.markerCluster = new L.MarkerClusterGroup({
+       showCoverageOnHover: true,
+       animate: true,
+       chunkedLoading: true
+    });
+    this.map.addLayer(this.markerCluster);
+    this.addFormations();
+  }
+
+  addFormations() {
+    _.each(this.props.formations, (f) => {
+      let marker = L.marker(f.localisation);
+      this.markerCluster.addLayer(marker);
     });
   }
+
   render() {
     const mapStyle = {
       position: "absolute",
@@ -60,7 +74,6 @@ export default class LeafletMap extends React.Component {
       height: "100%",
       width: "100%"
     };
-    const position = [51.505, -0.09];
 
     return(
       <div id="LeafletMap" style={mapStyle}>
@@ -68,3 +81,7 @@ export default class LeafletMap extends React.Component {
     )
   }
 }
+
+LeafletMap.propTypes = {
+  formations: PropTypes.array.isRequired
+};
