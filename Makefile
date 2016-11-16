@@ -9,3 +9,7 @@ mergeOnMaster:
 dev:
 	meteor npm install
 	meteor
+
+prod:
+	meteor npm install
+	nohup meteor --production -p 6000 &
