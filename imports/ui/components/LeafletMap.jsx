@@ -20,7 +20,13 @@ export default class LeafletMap extends React.Component {
    L.Icon.Default.imagePath = '/images/';
 
     /* Map initialization */
-    this.map = L.map('LeafletMap').setView([48.866667, 2.333333], 11);
+    this.map = L.map('LeafletMap', {
+      zoomControl: false
+    });
+    L.control.zoom({
+      position:'topright'
+    }).addTo(this.map);
+    this.map.setView([48.866667, 2.333333], 11)
     /* DEFAULT TILE LAYERS */
     var baseMaps = {
       "CartoDB": L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
@@ -48,7 +54,7 @@ export default class LeafletMap extends React.Component {
 
     /* add baseMaps to controlLayer */
     this.controlLayer = new L.Control.Layers(baseMaps, {}, {
-      position: 'bottomright'
+      position: 'topright'
     })
     this.map.addControl(this.controlLayer);
     /* Add default map */

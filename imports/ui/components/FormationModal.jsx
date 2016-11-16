@@ -14,8 +14,8 @@ class FormationModal extends React.Component {
   }
 
   componentWillUnmount () {
-      // Remove the listener
-      this.outsideClick.off();
+    // Remove the listener
+    this.outsideClick.off();
   }
   componentWillReceiveProps({keydown}) {
     if (keydown.event && keydown.event.which == 27) {
