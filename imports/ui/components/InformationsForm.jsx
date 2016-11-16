@@ -22,6 +22,7 @@ export default class InformationsForm extends React.Component {
     const where = ReactDOM.findDOMNode(this.refs.where).value.trim();
     const language = ReactDOM.findDOMNode(this.refs.language).value.trim();
     const levelOfProgramming = ReactDOM.findDOMNode(this.refs.levelOfProgramming).value.trim();
+    const job = ReactDOM.findDOMNode(this.refs.job).value.trim();
     if (!name || !age || !levelOfEducation || !where || !language || !levelOfProgramming) {
       return this.setState({error: "All fields are required !"});
     }
@@ -107,6 +108,23 @@ export default class InformationsForm extends React.Component {
                 <option value="beginner">Débutant</option>
                 <option value="intermediate">Intermédiaire</option>
                 <option value="confirmed">Confirmé</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label className="form-label" htmlFor="job">Métier ?</label>
+              <select className="form-select" id="job" ref="job">
+                <option value="journaliste_digital">Journaliste digital</option>
+                <option value="developpeur_web">Développeur web</option>
+                <option value="integrateur_web">Intégrateur web</option>
+                <option value="technicien_maintenance">Technicien de maintenance</option>
+                <option value="developpeur_nouvelles_technologies">Développeur nouvelles technologies</option>
+                <option value="architecte_technologie_numerique">Architecte en technologie numérique</option>
+                <option value="web_designer">Web designer</option>
+                <option value="forgeur_numerique">Forgeur numérique</option>
+                <option value="maker">Maker</option>
+                <option value="depanneur_informatique">Dépanneur informatique</option>
+                <option value="mediateur_numerique">Médiateur numérique</option>
+                <option value="autre">Autre</option>
               </select>
             </div>
           </div>
