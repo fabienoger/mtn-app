@@ -23,7 +23,7 @@ export default class InformationsForm extends React.Component {
     const language = ReactDOM.findDOMNode(this.refs.language).value.trim();
     const levelOfProgramming = ReactDOM.findDOMNode(this.refs.levelOfProgramming).value.trim();
     const job = ReactDOM.findDOMNode(this.refs.job).value.trim();
-    if (!name || !age || !levelOfEducation || !where || !language || !levelOfProgramming) {
+    if (!name || !age || !levelOfEducation || !where || !language || !levelOfProgramming || !job) {
       return this.setState({error: "All fields are required !"});
     }
     const informations = {
@@ -32,7 +32,8 @@ export default class InformationsForm extends React.Component {
       levelOfEducation,
       where,
       language,
-      levelOfProgramming
+      levelOfProgramming,
+      job
     }
     Meteor.call("createInformation", informations, (err, result) => {
       if (err) {
@@ -40,6 +41,7 @@ export default class InformationsForm extends React.Component {
         return console.error("createInformation ", err)
       }
       console.log("result ", result);
+      this.props.submitForm();
     });
   }
 

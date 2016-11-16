@@ -35,7 +35,7 @@ class InformationsModal extends React.Component {
           </div>
           <div className="modal-body">
             <div className="content">
-              <InformationsForm informations={this.props.informations} />
+              <InformationsForm informations={this.props.informations} submitForm={this.props.closeModal} />
             </div>
           </div>
           <div className="modal-footer">

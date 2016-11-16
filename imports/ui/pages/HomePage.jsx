@@ -10,7 +10,7 @@ export default class Home extends TrackerReact(React.Component) {
     super(props)
     this.state = {
       formations: Meteor.subscribe("formations"),
-      informations: {}
+      informations: null
     }
   }
   closeModal() {
