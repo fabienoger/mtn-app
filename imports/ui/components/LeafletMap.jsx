@@ -3,6 +3,7 @@ import { render }         from 'react-dom';
 import L                  from 'leaflet';
 import MarkerClusterGroup from 'leaflet.markercluster';
 import FormationModal     from '/imports/ui/components/FormationModal';
+import JobModal           from '/imports/ui/components/JobModal';
 import Loading            from '/imports/ui/components/Loading';
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
@@ -12,7 +13,8 @@ export default class LeafletMap extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      formation: null
+      formation: null,
+      job: null
     }
   }
   componentDidMount() {
@@ -66,6 +68,7 @@ export default class LeafletMap extends React.Component {
     });
     this.map.addLayer(this.markerCluster);
     this.addFormations();
+    this.addJobsMarkers();
   }
 
   addFormations() {
@@ -79,8 +82,21 @@ export default class LeafletMap extends React.Component {
     });
   }
 
+  addJobsMarkers(jobs) {
+    _.each(this.props.jobs, (job) => {
+      let marker = L.marker([48.866667, 2.333333]);
+      marker.on("click", (e) => {
+        this.setState({job: job});
+      });
+      this.markerCluster.addLayer(marker);
+    });
+  }
+
   closeModal() {
-    this.setState({formation: null});
+    this.setState({
+      formation: null,
+      job: null
+    });
   }
 
   render() {
@@ -100,11 +116,15 @@ export default class LeafletMap extends React.Component {
         {this.state.formation ?
           <FormationModal formation={this.state.formation} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
         : ''}
+        {this.state.job ?
+          <JobModal job={this.state.job} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
+        : ''}
       </div>
     )
   }
 }
 
 LeafletMap.propTypes = {
-  formations: PropTypes.array.isRequired
+  formations: PropTypes.array.isRequired,
+  jobs: PropTypes.array.isRequired
 };
