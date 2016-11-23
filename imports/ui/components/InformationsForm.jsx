@@ -16,21 +16,19 @@ export default class InformationsForm extends React.Component {
     e.preventDefault();
 
     // Find the text field via the React ref
-    const name = ReactDOM.findDOMNode(this.refs.name).value.trim();
     const age = ReactDOM.findDOMNode(this.refs.age).value.trim();
     const levelOfEducation = ReactDOM.findDOMNode(this.refs.levelOfEducation).value.trim();
     const where = ReactDOM.findDOMNode(this.refs.where).value.trim();
     const language = ReactDOM.findDOMNode(this.refs.language).value.trim();
     const levelOfProgramming = ReactDOM.findDOMNode(this.refs.levelOfProgramming).value.trim();
     const job = ReactDOM.findDOMNode(this.refs.job).value.trim();
-    if (!name || !age || !levelOfEducation || !where || !language || !levelOfProgramming || !job) {
+    if (!age || !levelOfEducation || !where || !language || !levelOfProgramming || !job) {
       return this.setState({error: "All fields are required !"});
     }
     const requestUrl = `http://127.0.0.1/age=${age}&levelOfEducation=${levelOfEducation}&levelOfProgramming=${levelOfProgramming}&where=${where}&language=${language}&job=${job}`;
     console.log("requestUrl ", requestUrl);
 
     const informations = {
-      name,
       age,
       levelOfEducation,
       where,
@@ -57,10 +55,6 @@ export default class InformationsForm extends React.Component {
         <form onSubmit={this.handleSubmit.bind(this)} className="columns">
           {this.state.error ? <Alert type="danger" message={this.state.error} /> : ''}
           <div className="col-6" style={colStyle}>
-            <div className="form-group">
-              <label className="form-label" htmlFor="name">Nom Prénom</label>
-              <input className="form-input" type="text" id="name" ref="name" placeholder="Nom, Prénom" />
-            </div>
             <div className="form-group">
               <label className="form-label" htmlFor="age">Âge</label>
               <select className="form-select" id="age" ref="age">
