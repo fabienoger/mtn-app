@@ -4,6 +4,7 @@ import Formations         from '/imports/api/formations/collection'
 import LeafletMap         from '/imports/ui/components/LeafletMap';
 import Loading            from '/imports/ui/components/Loading';
 import InformationsModal  from '/imports/ui/components/InformationsModal';
+import PageHeader         from '/imports/ui/components/PageHeader';
 import jobsSample         from '/imports/api/jobs/jobs.json';
 
 export default class Home extends TrackerReact(React.Component) {
@@ -25,7 +26,8 @@ export default class Home extends TrackerReact(React.Component) {
     const jobs = jobsSample.jobs;
     const formations = Formations.find({}).fetch();
     return (
-      <div id="home-page">
+      <div id="home-page" style={{height: '100%'}}>
+        <PageHeader />
         <LeafletMap formations={formations} jobs={jobs} />
         {this.state.informations ?
           <InformationsModal

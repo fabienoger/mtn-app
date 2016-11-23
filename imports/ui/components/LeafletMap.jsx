@@ -5,6 +5,7 @@ import MarkerClusterGroup from 'leaflet.markercluster';
 import FormationModal     from '/imports/ui/components/FormationModal';
 import JobModal           from '/imports/ui/components/JobModal';
 import Loading            from '/imports/ui/components/Loading';
+import Menu               from '/imports/ui/components/Menu';
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
@@ -23,7 +24,8 @@ export default class LeafletMap extends React.Component {
 
     /* Map initialization */
     this.map = L.map('LeafletMap', {
-      zoomControl: false
+      zoomControl: false,
+      scrollWheelZoom: false
     });
     L.control.zoom({
       position:'topright'
@@ -100,6 +102,10 @@ export default class LeafletMap extends React.Component {
   }
 
   render() {
+    const mapContainerStyle = {
+      position: "relative",
+      height: "100%"
+    };
     const mapStyle = {
       position: "absolute",
       top: "0",
@@ -111,7 +117,8 @@ export default class LeafletMap extends React.Component {
     };
 
     return(
-      <div id="map-container">
+      <div id="map-container" style={mapContainerStyle}>
+        <Menu />
         <div id="LeafletMap" style={mapStyle}></div>
         {this.state.formation ?
           <FormationModal formation={this.state.formation} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
