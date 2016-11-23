@@ -26,6 +26,9 @@ export default class InformationsForm extends React.Component {
     if (!name || !age || !levelOfEducation || !where || !language || !levelOfProgramming || !job) {
       return this.setState({error: "All fields are required !"});
     }
+    const requestUrl = `http://127.0.0.1/age=${age}&levelOfEducation=${levelOfEducation}&levelOfProgramming=${levelOfProgramming}&where=${where}&language=${language}&job=${job}`;
+    console.log("requestUrl ", requestUrl);
+
     const informations = {
       name,
       age,
