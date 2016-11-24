@@ -1,20 +1,20 @@
 import React              from 'react';
 import { Meteor }         from 'meteor/meteor';
 import Loading            from '/imports/ui/components/Loading';
-import InformationsModal  from '/imports/ui/components/InformationsModal';
+import SearchModal        from '/imports/ui/components/SearchModal';
 
 export default class Menu extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      informations: null
+      search: null
     }
   }
   closeModal() {
-    this.setState({informations: null});
+    this.setState({search: null});
   }
   displayModal() {
-    this.setState({informations: {}});
+    this.setState({search: {}});
   }
   render() {
     const menuStyle = {
@@ -34,8 +34,9 @@ export default class Menu extends React.Component {
             <i className="fa fa-github-alt" aria-hidden="true"></i>&nbsp; GitHub
           </a>
         </li>
-        {this.state.informations ?
-          <InformationsModal informations={this.state.informations} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
+        {this.state.search ?
+          <SearchModal 
+            search={this.state.search} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
         : ''}
       </ul>
     )

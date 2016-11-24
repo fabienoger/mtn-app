@@ -1,14 +1,14 @@
 import React, {PropTypes} from 'react';
 import { Meteor }         from 'meteor/meteor';
 import ReactDOM           from 'react-dom';
-import InformationsForm   from '/imports/ui/components/InformationsForm';
+import SearchForm         from '/imports/ui/components/SearchForm';
 import Loading            from '/imports/ui/components/Loading';
 import keydown            from 'react-keydown';
 import outsideClick       from 'outside-click';
 
-class InformationsModal extends React.Component {
+class SearchModal extends React.Component {
   componentDidMount () {
-    const element = ReactDOM.findDOMNode(this.refs.informationsModalContainer);
+    const element = ReactDOM.findDOMNode(this.refs.searchModalContainer);
     // Add the listener
     this.outsideClick = outsideClick(element, this.props.closeModal.bind(this));
   }
@@ -24,9 +24,9 @@ class InformationsModal extends React.Component {
   }
   render() {
     return (
-      <div id="informations-modal" className="modal active">
+      <div id="search-modal" className="modal active">
         <div className="modal-overlay"></div>
-        <div className="modal-container" ref="informationsModalContainer">
+        <div className="modal-container" ref="searchModalContainer">
           <div className="modal-header">
             <button className="btn btn-clear float-right" onClick={this.props.closeModal}></button>
             <div className="modal-title">
@@ -35,18 +35,15 @@ class InformationsModal extends React.Component {
           </div>
           <div className="modal-body">
             <div className="content">
-              <InformationsForm informations={this.props.informations} submitForm={this.props.closeModal} />
+              <SearchForm search={this.props.search} submitForm={this.props.closeModal} />
             </div>
-          </div>
-          <div className="modal-footer">
-            <button className="btn btn-danger" onClick={this.props.closeModal}>Close</button>
           </div>
         </div>
       </div>
     )
   }
 }
-InformationsModal.propTypes = {
-  informations: PropTypes.object.isRequired
+SearchModal.propTypes = {
+  search: PropTypes.object.isRequired
 };
-export default keydown(InformationsModal);
+export default keydown(SearchModal);

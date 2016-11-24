@@ -4,7 +4,7 @@ import { Meteor }         from 'meteor/meteor';
 import Alert              from '/imports/ui/components/Alert';
 import Informations       from '/imports/api/informations/collection'
 
-export default class InformationsForm extends React.Component {
+export default class search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -47,16 +47,16 @@ export default class InformationsForm extends React.Component {
   }
 
   render() {
-    const colStyle = {
-      padding: '5px'
-    }
+    const formStyle = {
+      width: '75%',
+      margin: 'auto'
+    };
     return (
-      <div id="informations-form" className="container">
-        <form onSubmit={this.handleSubmit.bind(this)} className="columns">
+      <div id="search-form">
+        <form onSubmit={this.handleSubmit.bind(this)} className="form-horizontal" style={formStyle}>
           {this.state.error ? <Alert type="danger" message={this.state.error} /> : ''}
-          <div className="col-6" style={colStyle}>
-            <div className="form-group">
-              <label className="form-label" htmlFor="age">Âge</label>
+            <div className="input-group">
+              <span className="input-group-addon">Âge</span>
               <select className="form-select" id="age" ref="age">
                 <option value="-18">Moins de 18 ans</option>
                 <option value="18/24">Entre 18 et 24 ans</option>
@@ -64,8 +64,8 @@ export default class InformationsForm extends React.Component {
                 <option value="+30">Plus de 30 ans</option>
               </select>
             </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="levelOfEducation">Niveau de diplôme</label>
+            <div className="input-group">
+              <span className="input-group-addon">Niveau de diplôme</span>
               <select className="form-select" id="levelOfEducation" ref="levelOfEducation">
                 <option value="without">Sans diplôme</option>
                 <option value="brevet">Brevet</option>
@@ -75,11 +75,8 @@ export default class InformationsForm extends React.Component {
                 <option value="doctorat">Doctorat</option>
               </select>
             </div>
-            <button type="submit" className="btn btn-primary mt-10">Envoyer</button>
-          </div>
-          <div className="col-6" style={colStyle}>
-            <div className="form-group">
-              <label className="form-label" htmlFor="where">Où ?</label>
+            <div className="input-group">
+              <span className="input-group-addon">Où ?</span>
               <select className="form-select" id="where" ref="where">
                 <option value="75">Paris (75)</option>
                 <option value="77">Seine-et-Marne (77)</option>
@@ -91,8 +88,8 @@ export default class InformationsForm extends React.Component {
                 <option value="95">Val-d'Oise (95)</option>
               </select>
             </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="language">Quel language ?</label>
+            <div className="input-group">
+              <span className="input-group-addon">Quel language ? ?</span>
               <select className="form-select" id="language" ref="language">
                 <option value="js">JavaScript</option>
                 <option value="php">PHP</option>
@@ -101,16 +98,16 @@ export default class InformationsForm extends React.Component {
                 <option value="html">HTML</option>
               </select>
             </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="levelOfProgramming">Quel est votre niveau en programmation ?</label>
+            <div className="input-group">
+              <span className="input-group-addon">Quel est votre niveau en programmation ?</span>
               <select className="form-select" id="levelOfProgramming" ref="levelOfProgramming">
                 <option value="beginner">Débutant</option>
                 <option value="intermediate">Intermédiaire</option>
                 <option value="confirmed">Confirmé</option>
               </select>
             </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="job">Métier ?</label>
+            <div className="input-group">
+              <span className="input-group-addon">Métier ?</span>
               <select className="form-select" id="job" ref="job">
                 <option value="journaliste_digital">Journaliste digital</option>
                 <option value="developpeur_web">Développeur web</option>
@@ -126,7 +123,7 @@ export default class InformationsForm extends React.Component {
                 <option value="autre">Autre</option>
               </select>
             </div>
-          </div>
+            <button type="submit" className="centered btn btn-primary mt-10">Envoyer</button>
         </form>
       </div>
     )
