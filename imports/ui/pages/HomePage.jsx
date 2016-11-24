@@ -35,7 +35,7 @@ export default class Home extends TrackerReact(React.Component) {
             onKeyPress={this.closeModal.bind(this)}
             closeModal={this.closeModal.bind(this)}
           />
-        : <Loading />}
+        : ''}
       </div>
     )
   }

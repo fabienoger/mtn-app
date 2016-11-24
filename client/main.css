@@ -7,7 +7,7 @@
 
 
 /* Site style */
-html, body, main, div#react-root, div#react-root div:nth-child(1) {
+html, body, main, div#react-root, div#react-root > div:nth-child(1) {
   height: 100%;
 }
 div#page-header {

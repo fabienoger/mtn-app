@@ -24,7 +24,7 @@ export default class Menu extends React.Component {
     return (
       <ul className="menu" id="menu" style={menuStyle}>
         <li className="menu-item" onClick={this.displayModal.bind(this)}>
-          <a href="#">
+          <a href="">
             <i className="fa fa-search" aria-hidden="true"></i>&nbsp; Rechercher
           </a>
         </li>
