@@ -2,14 +2,28 @@ import React, {PropTypes} from 'react';
 import ReactDOM           from 'react-dom';
 import { Meteor }         from 'meteor/meteor';
 import Alert              from '/imports/ui/components/Alert';
-import Informations       from '/imports/api/informations/collection'
+import Informations       from '/imports/api/informations/collection';
+import Select             from 'react-select';
+
+// Be sure to include styles at some point, probably during your bootstrapping
+import 'react-select/dist/react-select.css';
 
 export default class search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      error: null
+      error: null,
+      languages: [],
+      selectedLanguages: 'js,php,'
     }
+  }
+
+  handleMultiChange(languages) {
+    let selectedLanguages = ''
+    _.each(languages, language => {
+      selectedLanguages += `${language.value},`;
+    })
+    this.setState({languages, selectedLanguages});
   }
 
   handleSubmit(e) {
@@ -19,20 +33,20 @@ export default class search extends React.Component {
     const age = ReactDOM.findDOMNode(this.refs.age).value.trim();
     const levelOfEducation = ReactDOM.findDOMNode(this.refs.levelOfEducation).value.trim();
     const where = ReactDOM.findDOMNode(this.refs.where).value.trim();
-    const language = ReactDOM.findDOMNode(this.refs.language).value.trim();
     const levelOfProgramming = ReactDOM.findDOMNode(this.refs.levelOfProgramming).value.trim();
     const job = ReactDOM.findDOMNode(this.refs.job).value.trim();
-    if (!age || !levelOfEducation || !where || !language || !levelOfProgramming || !job) {
+    const languages = this.state.languages;
+    if (!age || !levelOfEducation || !where || !languages || !levelOfProgramming || !job) {
       return this.setState({error: "All fields are required !"});
     }
-    const requestUrl = `http://127.0.0.1/age=${age}&levelOfEducation=${levelOfEducation}&levelOfProgramming=${levelOfProgramming}&where=${where}&language=${language}&job=${job}`;
+    const requestUrl = `http://127.0.0.1/age=${age}&levelOfEducation=${levelOfEducation}&levelOfProgramming=${levelOfProgramming}&where=${where}&languages=${languages}&job=${job}`;
     console.log("requestUrl ", requestUrl);
 
     const informations = {
       age,
       levelOfEducation,
       where,
-      language,
+      languages,
       levelOfProgramming,
       job
     }
@@ -51,6 +65,13 @@ export default class search extends React.Component {
       width: '75%',
       margin: 'auto'
     };
+    const options = [
+      {value: 'js', label:'JavaScript', clearableValue: false},
+      {value: 'php', label:'PHP'},
+      {value: 'python', label:'Python'},
+      {value: 'ruby', label:'Ruby'},
+      {value: 'html', label:'HTML'}
+    ];
     return (
       <div id="search-form">
         <form onSubmit={this.handleSubmit.bind(this)} className="form-horizontal" style={formStyle}>
@@ -88,16 +109,10 @@ export default class search extends React.Component {
                 <option value="95">Val-d'Oise (95)</option>
               </select>
             </div>
-            <div className="input-group">
-              <span className="input-group-addon">Quel language ? ?</span>
-              <select className="form-select" id="language" ref="language">
-                <option value="js">JavaScript</option>
-                <option value="php">PHP</option>
-                <option value="python">Python</option>
-                <option value="ruby">Ruby</option>
-                <option value="html">HTML</option>
-              </select>
-            </div>
+            <Select name="Quel(s) language(s) ?" options={options} multi={true}
+              value={this.state.selectedLanguages}
+              onChange={this.handleMultiChange.bind(this)}
+            />
             <div className="input-group">
               <span className="input-group-addon">Quel est votre niveau en programmation ?</span>
               <select className="form-select" id="levelOfProgramming" ref="levelOfProgramming">
