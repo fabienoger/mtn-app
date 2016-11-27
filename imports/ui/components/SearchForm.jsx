@@ -3,10 +3,9 @@ import ReactDOM           from 'react-dom';
 import { Meteor }         from 'meteor/meteor';
 import Alert              from '/imports/ui/components/Alert';
 import Informations       from '/imports/api/informations/collection';
-import Select             from 'react-select';
+import Select2            from 'react-select2-wrapper';
 
-// Be sure to include styles at some point, probably during your bootstrapping
-import 'react-select/dist/react-select.css';
+import 'react-select2-wrapper/css/select2.css';
 
 export default class search extends React.Component {
   constructor(props) {
@@ -14,21 +13,24 @@ export default class search extends React.Component {
     this.state = {
       error: null,
       languages: [],
-      selectedLanguages: 'js,php,'
+      selectedLanguages: []
     }
   }
 
-  handleMultiChange(languages) {
-    let selectedLanguages = ''
-    _.each(languages, language => {
-      selectedLanguages += `${language.value},`;
-    })
+  multiSelectChange(e) {
+    let selectedLanguages = [];
+    let languages = [];
+    _.each(e.currentTarget.selectedOptions, (o) => {
+      languages.push(o.text);
+      selectedLanguages.push(o.value);
+    });
     this.setState({languages, selectedLanguages});
   }
 
   handleSubmit(e) {
     e.preventDefault();
-
+    e.stopPropagation();
+    this.setState({error: null});
     // Find the text field via the React ref
     const age = ReactDOM.findDOMNode(this.refs.age).value.trim();
     const levelOfEducation = ReactDOM.findDOMNode(this.refs.levelOfEducation).value.trim();
@@ -36,10 +38,14 @@ export default class search extends React.Component {
     const levelOfProgramming = ReactDOM.findDOMNode(this.refs.levelOfProgramming).value.trim();
     const job = ReactDOM.findDOMNode(this.refs.job).value.trim();
     const languages = this.state.languages;
-    if (!age || !levelOfEducation || !where || !languages || !levelOfProgramming || !job) {
+    let languagesStr = '';
+    if (!age || !levelOfEducation || !where || !languages || !levelOfProgramming || !job || languages.length < 1) {
       return this.setState({error: "All fields are required !"});
     }
-    const requestUrl = `http://127.0.0.1/age=${age}&levelOfEducation=${levelOfEducation}&levelOfProgramming=${levelOfProgramming}&where=${where}&languages=${languages}&job=${job}`;
+    _.each(languages, l => {
+      languagesStr += `${l},`;
+    });
+    const requestUrl = `http://127.0.0.1/age=${age}&levelOfEducation=${levelOfEducation}&levelOfProgramming=${levelOfProgramming}&where=${where}&languages=${languagesStr}&job=${job}`;
     console.log("requestUrl ", requestUrl);
 
     const informations = {
@@ -56,22 +62,26 @@ export default class search extends React.Component {
         return console.error("createInformation ", err)
       }
       console.log("result ", result);
-      this.props.submitForm();
+      //this.props.submitForm();
     });
   }
-
   render() {
     const formStyle = {
       width: '75%',
       margin: 'auto'
     };
-    const options = [
-      {value: 'js', label:'JavaScript', clearableValue: false},
-      {value: 'php', label:'PHP'},
-      {value: 'python', label:'Python'},
-      {value: 'ruby', label:'Ruby'},
-      {value: 'html', label:'HTML'}
+    const selectData = [
+       {id: 1, text: 'JavaScript'},
+       {id: 2, text: 'PHP'},
+       {id: 3, text: 'Python'},
+       {id: 4, text: 'Ruby'},
+       {id: 5, text: 'HTML'},
+       {id: 6, text: 'CSS'}
     ];
+    const selectOptions = {
+      placeholder: 'Rechercher un language'
+    }
+
     return (
       <div id="search-form">
         <form onSubmit={this.handleSubmit.bind(this)} className="form-horizontal" style={formStyle}>
@@ -109,10 +119,14 @@ export default class search extends React.Component {
                 <option value="95">Val-d'Oise (95)</option>
               </select>
             </div>
-            <Select name="Quel(s) language(s) ?" options={options} multi={true}
+            <Select2
+              multiple
               value={this.state.selectedLanguages}
-              onChange={this.handleMultiChange.bind(this)}
+              data={selectData}
+              options={selectOptions}
+              onSelect={this.multiSelectChange.bind(this)}
             />
+
             <div className="input-group">
               <span className="input-group-addon">Quel est votre niveau en programmation ?</span>
               <select className="form-select" id="levelOfProgramming" ref="levelOfProgramming">

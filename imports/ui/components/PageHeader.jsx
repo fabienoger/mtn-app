@@ -10,7 +10,7 @@ export default class PageHeader extends React.Component {
         <div style={heightFifty}>
           <img height="100%" width="100%" src="/images/home_background.png" />
         </div>
-        <div style={heightFifty}>
+        <div style={heightFifty} className="presentation">
           <h1 className="text-center">Présentation</h1>
           <div className="divider" style={{width: "25%", margin: "auto"}}></div>
           <div style={{width: "60%", padding: "50px"}} className="centered">
