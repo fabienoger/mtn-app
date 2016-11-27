@@ -6,15 +6,16 @@
   },
   "dependencies": {
     "babel-runtime": "6.18.0",
+    "jquery": "^3.1.1",
     "leaflet": "~1.0.0",
     "leaflet.markercluster": "^1.0.0",
     "meteor-node-stubs": "~0.2.0",
     "outside-click": "^2.0.0",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
     "react-keydown": "^1.6.5",
     "react-mounter": "^1.2.0",
-    "react-tools": "~0.13.3",
-    "react-select": "~1.0.0-rc.2"
+    "react-select2-wrapper": "^1.0.4-beta1",
+    "react-tools": "~0.13.3"
   }
 }

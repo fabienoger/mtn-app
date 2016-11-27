@@ -1,0 +1,65 @@
+$p-color: #181a34;
+
+/* Remove border-radius */
+.leaflet-control-layers.leaflet-control,
+.leaflet-control-zoom.leaflet-bar.leaflet-control,
+.leaflet-bar a:first-child, .leaflet-bar a:last-child {
+  border-radius: 0 !important;
+}
+
+
+/* Site style */
+html, body, main, div#react-root, div#react-root > div:nth-child(1) {
+  height: 100%;
+}
+div#page-header {
+  width: 100%;
+  height: 100%;
+  div.presentation {
+    background-color: $p-color;
+    color: #FFF;
+  }
+  div.presentation h1 {
+    margin-top: 0;
+    padding-top: 30px;
+  }
+}
+
+/* Search style */
+/* Modal style */
+div.modal-container {
+  height: 470px;
+  div.modal-body {
+    max-height: 450px
+  }
+}
+
+/* Form style */
+div#search-form {
+  form {
+    .input-group {
+        margin: 15px 0;
+    }
+    .form-select {
+      width: 300px;
+    }
+    .input-group-addon {
+      background-color: $p-color;
+      color: #FFF;
+    }
+    /* Select2 style */
+    .select2.select2-container {
+      width: 100% !important;
+      .select2-selection.select2-selection--multiple {
+        border-color: $p-color;
+      }
+      .select2-search.select2-search--inline {
+        margin-top: 0;
+      }
+      .select2-results__option[aria-selected=true], .select2-selection__choice {
+        background-color: $p-color;
+        color: #FFF;
+      }
+    }
+  }
+}
