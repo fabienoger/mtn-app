@@ -7,6 +7,10 @@ $p-color: #181a34;
   border-radius: 0 !important;
 }
 
+/* Override spectre style */
+.btn-primary {
+  background-color: $p-color !important;
+}
 
 /* Site style */
 html, body, main, div#react-root, div#react-root > div:nth-child(1) {
@@ -81,6 +85,20 @@ div#search-form {
       .select2-results__option[aria-selected=true], .select2-selection__choice {
         background-color: $p-color;
         color: #FFF;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 550px) {
+  div#page-header {
+    div.backgroundImg {
+      height: 0 !important;
+    }
+    div.presentation {
+      height: 100% !important;
+      div.text {
+        width: 80% !important;
       }
     }
   }

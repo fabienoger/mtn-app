@@ -125,6 +125,7 @@ export default class search extends React.Component {
               data={selectData}
               options={selectOptions}
               onSelect={this.multiSelectChange.bind(this)}
+              onUnselect={this.multiSelectChange.bind(this)}
             />
 
             <div className="input-group">
