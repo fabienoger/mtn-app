@@ -70,7 +70,7 @@ export default class LeafletMap extends React.Component {
     });
     this.map.addLayer(this.markerCluster);
     this.addFormations();
-    this.addJobsMarkers();
+//    this.addJobsMarkers();
   }
 
   addFormations() {
