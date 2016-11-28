@@ -1,6 +1,11 @@
 import React              from 'react';
+import Scroll             from 'react-scroll';
 
 export default class PageHeader extends React.Component {
+
+  scrollDown(e) {
+    Scroll.animateScroll.scrollToBottom();
+  }
   render() {
     const heightFifty = {
       height: "50%"
@@ -16,6 +21,9 @@ export default class PageHeader extends React.Component {
           <div style={{width: "60%", padding: "50px"}} className="centered">
             <p className="text-center">Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
             <p className="text-center">Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.</p>
+          </div>
+          <div className="centered arrow-wrapper" ref="arrowWrapper" onClick={this.scrollDown.bind(this)}>
+            <i className="fa fa-angle-double-down fa-3x" aria-hidden="true"></i>
           </div>
         </div>
       </div>
