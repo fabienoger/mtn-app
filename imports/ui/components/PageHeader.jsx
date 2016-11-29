@@ -13,7 +13,10 @@ export default class PageHeader extends React.Component {
     return (
       <div id="page-header">
         <div className="backgroundImg" style={heightFifty}>
-          <img height="100%" width="100%" src="/images/home_background.png" />
+          <img className="background" src="/images/home_background.png" />
+          <div className="logo-wrapper">
+            <img src="/images/logo-MTN.svg" />
+          </div>
         </div>
         <div style={heightFifty} className="presentation">
           <h1 className="text-center">Présentation</h1>
