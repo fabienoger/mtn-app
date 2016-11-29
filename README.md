@@ -1,4 +1,6 @@
-# App DataForGood
+# MTN App
+
+## Mon Taff Numérique
 
 ## Usage
 Simply clone the repository :
