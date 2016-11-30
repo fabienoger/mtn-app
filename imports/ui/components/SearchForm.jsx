@@ -66,10 +66,6 @@ export default class search extends React.Component {
     });
   }
   render() {
-    const formStyle = {
-      width: '75%',
-      margin: 'auto'
-    };
     const selectData = [
        {id: 1, text: 'JavaScript'},
        {id: 2, text: 'PHP'},
@@ -79,12 +75,13 @@ export default class search extends React.Component {
        {id: 6, text: 'CSS'}
     ];
     const selectOptions = {
-      placeholder: 'Rechercher un language'
+      placeholder: 'Rechercher un language de programmation'
     }
 
     return (
-      <div id="search-form">
-        <form onSubmit={this.handleSubmit.bind(this)} className="form-horizontal" style={formStyle}>
+      <div id="search-form" style={this.props.style}>
+        <h2>Rechercher</h2>
+        <form onSubmit={this.handleSubmit.bind(this)} className="form-horizontal">
           {this.state.error ? <Alert type="danger" message={this.state.error} /> : ''}
             <div className="input-group">
               <span className="input-group-addon">Âge</span>
@@ -139,8 +136,8 @@ export default class search extends React.Component {
             <div className="input-group">
               <span className="input-group-addon">Métier ?</span>
               <select className="form-select" id="job" ref="job">
-                <option value="journaliste_digital">Journaliste digital</option>
                 <option value="developpeur_web">Développeur web</option>
+                <option value="journaliste_digital">Journaliste digital</option>
                 <option value="integrateur_web">Intégrateur web</option>
                 <option value="technicien_maintenance">Technicien de maintenance</option>
                 <option value="developpeur_nouvelles_technologies">Développeur nouvelles technologies</option>

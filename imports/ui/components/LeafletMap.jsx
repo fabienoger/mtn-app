@@ -3,9 +3,9 @@ import { render }         from 'react-dom';
 import L                  from 'leaflet';
 import MarkerClusterGroup from 'leaflet.markercluster';
 import FormationModal     from '/imports/ui/components/FormationModal';
+import SearchWrapper      from '/imports/ui/components/SearchWrapper';
 import JobModal           from '/imports/ui/components/JobModal';
 import Loading            from '/imports/ui/components/Loading';
-import Menu               from '/imports/ui/components/Menu';
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
@@ -118,7 +118,7 @@ export default class LeafletMap extends React.Component {
 
     return(
       <div id="map-container" style={mapContainerStyle}>
-        <Menu />
+        <SearchWrapper />
         <div id="LeafletMap" style={mapStyle}></div>
         {this.state.formation ?
           <FormationModal formation={this.state.formation} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
