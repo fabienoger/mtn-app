@@ -6,6 +6,7 @@ if (Formations.find({}).count() != listFormationsGEN.length) {
   Formations.remove({});
   console.log("Insertion des formations GEN IDF dans la collection Formations [...]");
   _.each(listFormationsGEN, (f) => {
+    f.languages = f.languages.split('/');
     Formations.insert(f);
   });
   console.log("Fin de l'insertion dans la collection Formations");

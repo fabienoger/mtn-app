@@ -45,10 +45,8 @@ export default class search extends React.Component {
     _.each(languages, l => {
       languagesStr += `${l},`;
     });
-    const requestUrl = `http://127.0.0.1/age=${age}&levelOfEducation=${levelOfEducation}&levelOfProgramming=${levelOfProgramming}&where=${where}&languages=${languagesStr}&job=${job}`;
-    console.log("requestUrl ", requestUrl);
 
-    const informations = {
+    const search = {
       age,
       levelOfEducation,
       where,
@@ -56,13 +54,12 @@ export default class search extends React.Component {
       levelOfProgramming,
       job
     }
-    Meteor.call("createInformation", informations, (err, result) => {
+    Meteor.call("searchFormation", search, (err, result) => {
       if (err) {
         this.setState({error: "All fields are required !"});
-        return console.error("createInformation ", err)
+        return console.error("searchFormation ", err)
       }
-      console.log("result ", result);
-      //this.props.submitForm();
+      this.props.searchResult(result);
     });
   }
   render() {
@@ -128,9 +125,9 @@ export default class search extends React.Component {
             <div className="input-group">
               <span className="input-group-addon">Quel est votre niveau en programmation ?</span>
               <select className="form-select" id="levelOfProgramming" ref="levelOfProgramming">
-                <option value="beginner">Débutant</option>
-                <option value="intermediate">Intermédiaire</option>
-                <option value="confirmed">Confirmé</option>
+                <option value="débutant">Débutant</option>
+                <option value="intermédiaire">Intermédiaire</option>
+                <option value="confirmé">Confirmé</option>
               </select>
             </div>
             <div className="input-group">

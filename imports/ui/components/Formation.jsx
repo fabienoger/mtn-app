@@ -2,13 +2,6 @@ import React, {PropTypes} from 'react';
 import { Meteor }         from 'meteor/meteor';
 
 export default class Formation extends React.Component {
-  formatLanguages(languagesStr) {
-    if (!languagesStr) {
-      return;
-    }
-    let languages = languagesStr.split("/");
-    return languages;
-  }
   render() {
     const formation = this.props.formation;
     const languageStyle = {margin: '5px', display: 'inline-block'};
@@ -24,7 +17,7 @@ export default class Formation extends React.Component {
             <div className="divider"></div>
             <h6>Languages</h6>
             <div className="languages" style={languagesStyle}>
-              {this.formatLanguages(formation.languages).map((language) => {
+              {formation.languages.map((language) => {
                 return (<span key={language} className="label label-primary" style={languageStyle}>{language}</span>)
               })}
             </div>

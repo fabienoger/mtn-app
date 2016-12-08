@@ -4,6 +4,7 @@ import L                  from 'leaflet';
 import MarkerClusterGroup from 'leaflet.markercluster';
 import FormationModal     from '/imports/ui/components/FormationModal';
 import SearchWrapper      from '/imports/ui/components/SearchWrapper';
+import SearchResult       from '/imports/ui/components/SearchResult';
 import JobModal           from '/imports/ui/components/JobModal';
 import Loading            from '/imports/ui/components/Loading';
 import 'leaflet.markercluster/dist/MarkerCluster.css'
@@ -14,6 +15,7 @@ export default class LeafletMap extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      formations: this.props.formations,
       formation: null,
       job: null
     }
@@ -69,12 +71,14 @@ export default class LeafletMap extends React.Component {
        chunkedLoading: true
     });
     this.map.addLayer(this.markerCluster);
-    this.addFormations();
+    this.addFormations(this.state.formations);
 //    this.addJobsMarkers();
   }
 
-  addFormations() {
-    _.each(this.props.formations, (f) => {
+  // Clear markers and add new formations
+  addFormations(formations) {
+    this.markerCluster.clearLayers();
+    _.each(formations, (f) => {
       let marker = L.marker(f.localisation);
       marker._id = f._id;
       marker.on("click", (e) => {
@@ -101,6 +105,11 @@ export default class LeafletMap extends React.Component {
     });
   }
 
+  searchResult(formations) {
+    this.addFormations(formations);
+    this.setState({formations});
+  }
+
   render() {
     const mapContainerStyle = {
       position: "relative",
@@ -118,7 +127,10 @@ export default class LeafletMap extends React.Component {
 
     return(
       <div id="map-container" style={mapContainerStyle}>
-        <SearchWrapper />
+        <SearchWrapper searchResult={this.searchResult.bind(this)} />
+        {this.state.formations ?
+          <SearchResult formations={this.state.formations} />
+        : ''}
         <div id="LeafletMap" style={mapStyle}></div>
         {this.state.formation ?
           <FormationModal formation={this.state.formation} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
