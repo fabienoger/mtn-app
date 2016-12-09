@@ -2,6 +2,15 @@ import React, {PropTypes} from 'react';
 import { Meteor }         from 'meteor/meteor';
 
 export default class Formation extends React.Component {
+  formatLevelDiploma(str) {
+    if (str == "without") {
+      return "Sans diplôme";
+    } else if (str == "without_only") {
+      return "Sans diplôme uniquement";
+    } else {
+      return str;
+    }
+  }
   render() {
     const formation = this.props.formation;
     const languageStyle = {margin: '5px', display: 'inline-block'};
@@ -26,7 +35,7 @@ export default class Formation extends React.Component {
             <span className="label label-primary">{formation.niveau}</span>
             <div className="divider"></div>
             <h6>Niveau diplôme</h6>
-            <span className="label label-primary">{formation.niveau_diplome}</span>
+            <span className="label label-primary">{this.formatLevelDiploma(formation.niveau_diplome)}</span>
           </div>
           <div className="column col-6">
             <h6>Prix <span className="label label-primary float-right">{formation.prix}</span></h6>

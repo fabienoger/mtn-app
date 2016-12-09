@@ -95,9 +95,8 @@ export default class search extends React.Component {
                 <option value="without">Sans diplôme</option>
                 <option value="brevet">Brevet</option>
                 <option value="bac">Bac</option>
-                <option value="licence">Licence</option>
-                <option value="master">Master</option>
-                <option value="doctorat">Doctorat</option>
+                <option value="bac+2">Bac + 2</option>
+                <option value="without_only">Sans diplôme uniquement</option>
               </select>
             </div>
             <div className="input-group">

@@ -10,6 +10,8 @@ Meteor.methods({
     const searchDoc = {
       niveau: {$regex: search.levelOfProgramming, $options : 'i'},
       //metier: search.job,
+      niveau_diplome: search.levelOfEducation,
+      age: search.age,
       $where: `/^${search.where}.*/.test(this.post_code)`,
       languages: {$in: search.languages}
     };
