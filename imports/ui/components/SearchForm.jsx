@@ -35,11 +35,10 @@ export default class search extends React.Component {
     const age = ReactDOM.findDOMNode(this.refs.age).value.trim();
     const levelOfEducation = ReactDOM.findDOMNode(this.refs.levelOfEducation).value.trim();
     const where = ReactDOM.findDOMNode(this.refs.where).value.trim();
-    const levelOfProgramming = ReactDOM.findDOMNode(this.refs.levelOfProgramming).value.trim();
     const job = ReactDOM.findDOMNode(this.refs.job).value.trim();
     const languages = this.state.languages;
     let languagesStr = '';
-    if (!age || !levelOfEducation || !where || !languages || !levelOfProgramming || !job || languages.length < 1) {
+    if (!age || !levelOfEducation || !where || !languages || !job || languages.length < 1) {
       return this.setState({error: "All fields are required !"});
     }
     _.each(languages, l => {
@@ -50,9 +49,8 @@ export default class search extends React.Component {
       age,
       levelOfEducation,
       where,
-      languages,
-      levelOfProgramming,
-      job
+      job,
+      languages
     }
     Meteor.call("searchFormation", search, (err, result) => {
       if (err) {
@@ -64,12 +62,13 @@ export default class search extends React.Component {
   }
   render() {
     const selectData = [
-       {id: 1, text: 'JavaScript'},
+       {id: 1, text: 'JS'},
        {id: 2, text: 'PHP'},
        {id: 3, text: 'Python'},
        {id: 4, text: 'Ruby'},
-       {id: 5, text: 'HTML'},
-       {id: 6, text: 'CSS'}
+       {id: 5, text: 'Java'},
+       {id: 6, text: 'HTML'},
+       {id: 7, text: 'CSS'}
     ];
     const selectOptions = {
       placeholder: 'Rechercher un language de programmation'
@@ -83,7 +82,7 @@ export default class search extends React.Component {
             <div className="input-group">
               <span className="input-group-addon">Âge</span>
               <select className="form-select" id="age" ref="age">
-                <option value="-18">Moins de 18 ans</option>
+                <option value="18+">Plus de 18 ans</option>
                 <option value="18/24">Entre 18 et 24 ans</option>
                 <option value="24/30">Entre 24 et 30 ans</option>
                 <option value="+30">Plus de 30 ans</option>
@@ -120,15 +119,6 @@ export default class search extends React.Component {
               onSelect={this.multiSelectChange.bind(this)}
               onUnselect={this.multiSelectChange.bind(this)}
             />
-
-            <div className="input-group">
-              <span className="input-group-addon">Quel est votre niveau en programmation ?</span>
-              <select className="form-select" id="levelOfProgramming" ref="levelOfProgramming">
-                <option value="débutant">Débutant</option>
-                <option value="intermédiaire">Intermédiaire</option>
-                <option value="confirmé">Confirmé</option>
-              </select>
-            </div>
             <div className="input-group">
               <span className="input-group-addon">Métier ?</span>
               <select className="form-select" id="job" ref="job">
