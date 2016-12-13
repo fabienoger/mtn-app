@@ -29,10 +29,7 @@ class FormationModal extends React.Component {
         <div className="modal-container" ref="formationModalContainer">
           <div className="modal-header">
             <button className="btn btn-clear float-right" onClick={this.props.closeModal}></button>
-            <div className="modal-title">
-              {this.props.formation.nom_etablissement}
-              <span className="label label-primary ml-10">{this.props.formation.age}</span>
-            </div>
+            <div className="modal-title">.</div>
           </div>
           <div className="modal-body">
             <div className="content">

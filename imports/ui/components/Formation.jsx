@@ -15,8 +15,13 @@ export default class Formation extends React.Component {
     const formation = this.props.formation;
     const languageStyle = {margin: '5px', display: 'inline-block'};
     const languagesStyle = {width: '100%'};
+    const logoUrl = `/images/logo_ecoles/${formation.logo}`;
     return (
       <div id="formation" className="containers">
+        <div className="logo-wrapper">
+          <span className="accessible-age pull-right">Accessible à <span className="label label-primary ml-10">{formation.age}</span></span>
+          <img src={logoUrl} className="img-responsive" alt={formation.nom_formation} />
+        </div>
         <h2 className="mt-5">{formation.nom_formation}</h2>
         <small className="label">Formation {formation.formation_diplomante}</small>
         <div className="columns">

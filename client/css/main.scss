@@ -129,6 +129,25 @@ div#map-container {
     }
   }
 }
+div#formationModal {
+  .modal-header .modal-title {
+    color: #FFFFFF;
+  }
+  div#formation {
+    div.logo-wrapper {
+      position: relative;
+      img {
+        display: block;
+        max-width:230px;
+        max-height:95px;
+        width: auto;
+        height: auto;
+      }
+      span.accessible-age {
+      }
+    }
+  }
+}
 
 @keyframes MoveUpDown {
   0 {
