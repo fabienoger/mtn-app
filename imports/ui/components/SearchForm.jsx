@@ -38,13 +38,12 @@ export default class search extends React.Component {
     const job = ReactDOM.findDOMNode(this.refs.job).value.trim();
     const languages = this.state.languages;
     let languagesStr = '';
-    if (!age || !levelOfEducation || !where || !languages || !job || languages.length < 1) {
+    if (!age || !levelOfEducation || !languages || !job || languages.length < 1) {
       return this.setState({error: "All fields are required !"});
     }
     _.each(languages, l => {
       languagesStr += `${l},`;
     });
-
     const search = {
       age,
       levelOfEducation,
@@ -64,11 +63,11 @@ export default class search extends React.Component {
     const selectData = [
        {id: 1, text: 'JS'},
        {id: 2, text: 'PHP'},
-       {id: 3, text: 'Python'},
-       {id: 4, text: 'Ruby'},
-       {id: 5, text: 'Java'},
-       {id: 6, text: 'HTML'},
-       {id: 7, text: 'CSS'}
+       {id: 3, text: 'JAVA'},
+       {id: 4, text: 'HTML'},
+       {id: 5, text: 'CSS'},
+       {id: 6, text: 'SQL'},
+       {id: 7, text: 'Pas de programmation web'}
     ];
     const selectOptions = {
       placeholder: 'Rechercher un language de programmation'
@@ -101,6 +100,7 @@ export default class search extends React.Component {
             <div className="input-group">
               <span className="input-group-addon">Où ?</span>
               <select className="form-select" id="where" ref="where">
+                <option value="none">Pas de préférence</option>
                 <option value="75">Paris (75)</option>
                 <option value="77">Seine-et-Marne (77)</option>
                 <option value="78">Yvelines (78)</option>
