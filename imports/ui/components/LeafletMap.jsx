@@ -76,6 +76,7 @@ export default class LeafletMap extends React.Component {
     //this.addJobsMarkers(this.props.jobs);
   }
 
+  // Return Array of JSON jobs from formation.metier
   getJsonFromFormation(formation) {
     if (!formation) {
       return false;
@@ -90,14 +91,15 @@ export default class LeafletMap extends React.Component {
     return jobs;
   }
 
+  // Get jobs and add formations and Jobs markers close modal and fitbounds
   displayFormationJobs(e) {
     const formation = this.state.formation;
     let jobs = this.getJsonFromFormation(formation);
+    console.log("[displayFormationJobs] jobs ", jobs);
     this.addFormations([this.state.formation]);
     this.addJobsMarkers(jobs);
     this.closeModal();
-    var latLng = this.markerCluster.getBounds();
-    this.map.fitBounds(latLng);
+    this.map.fitBounds(this.markerCluster.getBounds());
   }
 
   // Clear markers and add default formations
@@ -106,6 +108,7 @@ export default class LeafletMap extends React.Component {
       formations: this.props.formations
     })
     this.addFormations(this.props.formations);
+    this.map.fitBounds(this.markerCluster.getBounds());
   }
 
   // Clear markers and add new formations
@@ -121,6 +124,7 @@ export default class LeafletMap extends React.Component {
     });
   }
 
+  // Add jobs marker
   addJobsMarkers(jobs) {
     _.each(jobs, (job) => {
       let coordinates = [48.866667, 2.333333];
