@@ -1,5 +1,6 @@
 $p-color: #181a34;
 $orange: #F0E999;
+$spectre: #5764c6;
 
 /* Remove border-radius */
 .leaflet-control-layers.leaflet-control,
@@ -146,6 +147,17 @@ div#formationModal {
         height: auto;
       }
       span.accessible-age {
+      }
+    }
+  }
+  div.modal-container {
+    div.modal-footer {
+      .btn {
+        margin-left: 5px;
+      }
+      .btn.website {
+        background-color: #5764c6;
+        color: #FFF;
       }
     }
   }

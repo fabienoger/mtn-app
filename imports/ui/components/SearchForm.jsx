@@ -142,7 +142,7 @@ export default class search extends React.Component {
           <p className="empty-title">C'est quoi ce taff ?</p>
           <p className="empty-meta">Vous êtes attiré par un métier dans le numérique mais vous ne savez pas exactement en quoi il consiste ? Pas de souci, on a tout prévu :)</p>
           <button className="empty-action btn btn-primary" download>
-            <i className="fa fa-download" aria-hidden="true"></i>
+            <i className="fa fa-download" aria-hidden="true"></i>&nbsp;
             Télécharger les fiches métier
           </button>
         </div>

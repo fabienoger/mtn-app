@@ -52,7 +52,8 @@ export default class Formation extends React.Component {
             <div className="divider"></div>
             <h6>Code postal <span className="label label-primary float-right">{formation.post_code}</span></h6>
             <div className="divider"></div>
-
+            <h6>Contact <span className="label label-primary float-right">{formation.contact}</span></h6>
+            <div className="divider"></div>
           </div>
 
         </div>

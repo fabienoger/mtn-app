@@ -39,6 +39,7 @@ class FormationModal extends React.Component {
             </div>
           </div>
           <div className="modal-footer">
+            <a className="btn website" target="_blank" href={this.props.formation.site}>Site web</a>
             <button className="btn btn-primary" onClick={this.props.closeModal}>Fermer</button>
           </div>
         </div>
