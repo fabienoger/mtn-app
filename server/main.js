@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import '/imports/api/formations'
+import '/imports/api/jobs'
 import '/imports/api/informations'
 
 Meteor.startup(() => {

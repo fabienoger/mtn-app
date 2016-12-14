@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import { render }         from 'react-dom';
 import L                  from 'leaflet';
 import MarkerClusterGroup from 'leaflet.markercluster';
+import Jobs               from '/imports/api/jobs/collection';
 import FormationModal     from '/imports/ui/components/FormationModal';
 import SearchWrapper      from '/imports/ui/components/SearchWrapper';
 import SearchResult       from '/imports/ui/components/SearchResult';
@@ -72,7 +73,31 @@ export default class LeafletMap extends React.Component {
     });
     this.map.addLayer(this.markerCluster);
     this.addFormations(this.state.formations);
-    //this.addJobsMarkers();
+    //this.addJobsMarkers(this.props.jobs);
+  }
+
+  getJsonFromFormation(formation) {
+    if (!formation) {
+      return false;
+    }
+    let jobsStr = formation.metier.split(",");
+    let jobs = [];
+    _.each(jobsStr, jobStr => {
+      _.each(Jobs.find({job_title_scrap: {$regex: jobStr.trim(), $options : 'i'}}).fetch(), job => {
+        jobs.push(job);
+      });
+    });
+    return jobs;
+  }
+
+  displayFormationJobs(e) {
+    const formation = this.state.formation;
+    let jobs = this.getJsonFromFormation(formation);
+    this.addFormations([this.state.formation]);
+    this.addJobsMarkers(jobs);
+    this.closeModal();
+    var latLng = this.markerCluster.getBounds();
+    this.map.fitBounds(latLng);
   }
 
   // Clear markers and add default formations
@@ -97,8 +122,12 @@ export default class LeafletMap extends React.Component {
   }
 
   addJobsMarkers(jobs) {
-    _.each(this.props.jobs, (job) => {
-      let marker = L.marker([48.866667, 2.333333]);
+    _.each(jobs, (job) => {
+      let coordinates = [48.866667, 2.333333];
+      if (job.coordonnees && job.coordonnees.lat && job.coordonnees.lon) {
+        coordinates = job.coordonnees;
+      }
+      let marker = L.marker(coordinates);
       marker.on("click", (e) => {
         this.setState({job: job});
       });
@@ -119,6 +148,7 @@ export default class LeafletMap extends React.Component {
   }
 
   render() {
+    this.props.jobs;
     const mapContainerStyle = {
       position: "relative",
       height: "100%"
@@ -141,7 +171,10 @@ export default class LeafletMap extends React.Component {
         : ''}
         <div id="LeafletMap" style={mapStyle}></div>
         {this.state.formation ?
-          <FormationModal formation={this.state.formation} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
+          <FormationModal formation={this.state.formation}
+            onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)}
+            displayFormationJobs={this.displayFormationJobs.bind(this)}
+          />
         : ''}
         {this.state.job ?
           <JobModal job={this.state.job} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
