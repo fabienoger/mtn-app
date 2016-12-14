@@ -25,10 +25,6 @@ export default class PageHeader extends React.Component {
               <p className="text-center">C’est l’objectif principal de notre plateforme : vous renseigner, rendre très visuel la localisation des formations Grande École du Numérique (GEN) et vous montrer les opportunités de travail qu’elles peuvent vous apporter.</p>
             </div>
           </div>
-          <div className="download-wrapper">
-            <h2 className="text-center">C'est quoi ce taff ?</h2>
-            <p className="text-center">Vous êtes attiré par un métier dans le numérique mais vous ne savez pas exactement en quoi il consiste ? Pas de souci, on a tout prévu :)</p>
-          </div>
           <div className="centered arrow-wrapper" ref="arrowWrapper" onClick={this.scrollDown.bind(this)}>
             <i className="fa fa-angle-double-down fa-3x" aria-hidden="true"></i>
           </div>
