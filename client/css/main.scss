@@ -42,10 +42,12 @@ div#page-header {
     background-color: $p-color;
     color: #FFF;
     div.presentation {
-      background-color: $orange;
-      color: $p-color;
+      background-color: $p-color;
+      color: #FFF;
+      padding-top: 60px;
+      padding-bottom: 60px;
       div.divider {
-        border-color: $p-color;
+        border-color: $orange;
       }
     }
     div.arrow-wrapper {
@@ -58,10 +60,6 @@ div#page-header {
         position: absolute;
       }
     }
-  }
-  div.presentation-wrapper h1 {
-    margin-top: 0;
-    padding-top: 30px;
   }
 }
 
@@ -76,13 +74,12 @@ div#map-container {
     width: 500px;
 
     h2 {
-      margin-top: 50px;
+      margin-top: 30px;
       margin-left: 10px;
       margin-right: 10px;
     }
 
     form {
-      margin-top: 50px;
       .input-group {
           margin: 15px 0;
       }
@@ -107,6 +104,11 @@ div#map-container {
           color: #FFF;
         }
       }
+    }
+    .empty {
+      position: absolute;
+      bottom: 0;
+      background-color: #dbdbdb;
     }
   }
   div#search-wrapper {
