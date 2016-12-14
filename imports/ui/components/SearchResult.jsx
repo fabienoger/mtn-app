@@ -40,14 +40,13 @@ export default class SearchResult extends React.Component {
     return (
       <div className="empty" id="search-result" style={searchResultStyle}>
         <button className="btn btn-clear" style={clearButtonStyle} onClick={this.closeSearch.bind(this)}></button>
-        <i className="fa fa-search" aria-hidden="true"></i>&nbsp;
         <p className="empty-title">
-          {formations.length} Formation{formations.length > 1 ? 's' : ''}
+          {formations.length} Formation{formations.length > 1 ? 's' : ''} <br />trouvée{formations.length > 1 ? 's' : ''}
         </p>
-        {/*
           <p className="empty-meta"></p>
-          <button className="empty-action btn btn-primary"></button>
-        */}
+          <button className="empty-action btn btn-primary" onClick={this.props.clearAndAddFormations.bind(this)}>
+            <i className="fa fa-refresh" aria-hidden="true"></i>
+          </button>
       </div>
     )
   }

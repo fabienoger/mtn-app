@@ -72,7 +72,15 @@ export default class LeafletMap extends React.Component {
     });
     this.map.addLayer(this.markerCluster);
     this.addFormations(this.state.formations);
-//    this.addJobsMarkers();
+    //this.addJobsMarkers();
+  }
+
+  // Clear markers and add default formations
+  clearAndAddFormations() {
+    this.setState({
+      formations: this.props.formations
+    })
+    this.addFormations(this.props.formations);
   }
 
   // Clear markers and add new formations
@@ -129,7 +137,7 @@ export default class LeafletMap extends React.Component {
       <div id="map-container" style={mapContainerStyle}>
         <SearchWrapper searchResult={this.searchResult.bind(this)} />
         {this.state.formations ?
-          <SearchResult formations={this.state.formations} />
+          <SearchResult formations={this.state.formations} clearAndAddFormations={this.clearAndAddFormations.bind(this)}/>
         : ''}
         <div id="LeafletMap" style={mapStyle}></div>
         {this.state.formation ?
