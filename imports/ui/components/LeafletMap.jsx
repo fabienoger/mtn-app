@@ -93,7 +93,6 @@ export default class LeafletMap extends React.Component {
   displayFormationJobs(e) {
     const formation = this.state.formation;
     let jobs = this.getJsonFromFormation(formation);
-    console.log("jobs ", jobs);
     this.addFormations([this.state.formation]);
     this.addJobsMarkers(jobs);
     this.closeModal();
