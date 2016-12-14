@@ -39,7 +39,7 @@ export default class search extends React.Component {
     const languages = this.state.languages;
     let languagesStr = '';
     if (!age || !levelOfEducation || !languages || !job || languages.length < 1) {
-      return this.setState({error: "All fields are required !"});
+      return this.setState({error: "Tous les champs sont requis !"});
     }
     _.each(languages, l => {
       languagesStr += `${l},`;
@@ -53,7 +53,7 @@ export default class search extends React.Component {
     }
     Meteor.call("searchFormation", search, (err, result) => {
       if (err) {
-        this.setState({error: "All fields are required !"});
+        this.setState({error: "Tous les champs sont requis !"});
         return console.error("searchFormation ", err)
       }
       this.props.searchResult(result);

@@ -41,7 +41,7 @@ class JobModal extends React.Component {
             </div>
           </div>
           <div className="modal-footer">
-            <button className="btn btn-primary" onClick={this.props.closeModal}>Close</button>
+            <button className="btn btn-primary" onClick={this.props.closeModal}>Fermer</button>
           </div>
         </div>
       </div>
