@@ -9,9 +9,11 @@ import assistant_gestion    from '/imports/api/jobs/assistant_e_de_gestion.json'
 import animation            from '/imports/api/jobs/animation.json';
 
 const jobs = _.union(techMaintenance, _techMaintenance, maker, integrateur_web, data_analyst, community_manager, assistant_gestion, animation);
-Jobs.remove({});
-console.log("Inserting jobs");
-_.each(jobs, job => {
-  Jobs.insert(job);
-});
+if (Jobs.find({}).count() != jobs.length) {
+  Jobs.remove({});
+  console.log("Inserting jobs");
+  _.each(jobs, job => {
+    Jobs.insert(job);
+  });
+}
 console.log("End insert jobs");
