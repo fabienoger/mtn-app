@@ -18,7 +18,8 @@ export default class LeafletMap extends React.Component {
     this.state = {
       formations: this.props.formations,
       formation: null,
-      job: null
+      job: null,
+      jobs: []
     }
   }
   componentDidMount() {
@@ -73,7 +74,7 @@ export default class LeafletMap extends React.Component {
     });
     this.map.addLayer(this.markerCluster);
     this.addFormations(this.state.formations);
-    //this.addJobsMarkers(this.props.jobs);
+    //this.addJobsMarkers(this.state.jobs);
   }
 
   // Return Array of JSON jobs from formation.metier
@@ -94,7 +95,8 @@ export default class LeafletMap extends React.Component {
   // Get jobs and add formations and Jobs markers close modal and fitbounds
   displayFormationJobs(e) {
     const formation = this.state.formation;
-    let jobs = this.getJsonFromFormation(formation);
+    const jobs = this.getJsonFromFormation(formation);
+    this.setState({jobs});
     this.addFormations([this.state.formation]);
     this.addJobsMarkers(jobs);
     this.closeModal();
@@ -104,7 +106,8 @@ export default class LeafletMap extends React.Component {
   // Clear markers and add default formations
   clearAndAddFormations() {
     this.setState({
-      formations: this.props.formations
+      formations: this.props.formations,
+      jobs: []
     })
     this.addFormations(this.props.formations);
     this.map.fitBounds(this.markerCluster.getBounds());
@@ -151,7 +154,6 @@ export default class LeafletMap extends React.Component {
   }
 
   render() {
-    this.props.jobs;
     const mapContainerStyle = {
       position: "relative",
       height: "100%"
@@ -170,7 +172,7 @@ export default class LeafletMap extends React.Component {
       <div id="map-container" style={mapContainerStyle}>
         <SearchWrapper searchResult={this.searchResult.bind(this)} />
         {this.state.formations ?
-          <SearchResult formations={this.state.formations} clearAndAddFormations={this.clearAndAddFormations.bind(this)}/>
+          <SearchResult formations={this.state.formations} jobs={this.state.jobs} clearAndAddFormations={this.clearAndAddFormations.bind(this)}/>
         : ''}
         <div id="LeafletMap" style={mapStyle}></div>
         {this.state.formation ?
@@ -188,6 +190,5 @@ export default class LeafletMap extends React.Component {
 }
 
 LeafletMap.propTypes = {
-  formations: PropTypes.array.isRequired,
-  jobs: PropTypes.array.isRequired
+  formations: PropTypes.array.isRequired
 };

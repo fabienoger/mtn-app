@@ -21,6 +21,7 @@ export default class SearchResult extends React.Component {
 
   render() {
     const formations = this.props.formations;
+    const jobs = this.props.jobs;
     const clearButtonStyle = {
       position: 'absolute',
       top: '10px',
@@ -41,7 +42,11 @@ export default class SearchResult extends React.Component {
       <div className="empty" id="search-result" style={searchResultStyle}>
         <button className="btn btn-clear" style={clearButtonStyle} onClick={this.closeSearch.bind(this)}></button>
         <p className="empty-title">
-          {formations.length} Formation{formations.length > 1 ? 's' : ''} <br />trouvée{formations.length > 1 ? 's' : ''}
+          {jobs.length > 0 ?
+            <span>{jobs.length} Emploi{jobs.length > 1 ? 's' : ''} <br />trouvé{jobs.length > 1 ? 's' : ''}</span>
+          :
+            <span>{formations.length} Formation{formations.length > 1 ? 's' : ''} <br />trouvée{formations.length > 1 ? 's' : ''}</span>
+          }
         </p>
           <p className="empty-meta"></p>
           <button className="empty-action btn btn-primary" onClick={this.props.clearAndAddFormations.bind(this)}>
@@ -53,5 +58,6 @@ export default class SearchResult extends React.Component {
 }
 
 SearchResult.propTypes = {
-  formations: PropTypes.array.isRequired
+  formations: PropTypes.array.isRequired,
+  jobs: PropTypes.array.isRequired
 };

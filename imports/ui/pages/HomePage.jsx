@@ -17,16 +17,20 @@ export default class Home extends TrackerReact(React.Component) {
     }
   }
 
+  componentWillUnmount() {
+    this.state.formations.stop();
+    this.state.jobs.stop();
+  }
+
   render() {
     if (!this.state.formations.ready()) {
       return (<Loading />)
     }
-    const jobs = Formations.find({}).fetch();
     const formations = Formations.find({}).fetch();
     return (
       <div id="home-page" style={{height: '100%'}}>
         <PageHeader />
-        <LeafletMap formations={formations} jobs={jobs} />
+        <LeafletMap formations={formations} />
       </div>
     )
   }
