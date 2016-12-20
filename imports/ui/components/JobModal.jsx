@@ -30,7 +30,7 @@ class JobModal extends React.Component {
           <div className="modal-header">
             <button className="btn btn-clear float-right" onClick={this.props.closeModal}></button>
             <div className="modal-title">
-              {this.props.job.nom_du_poste}
+              {this.props.job.job_title_scrap}
             </div>
           </div>
           <div className="modal-body">

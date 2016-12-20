@@ -4,6 +4,7 @@ import { Meteor }         from 'meteor/meteor';
 export default class Job extends React.Component {
   render() {
     const job = this.props.job;
+    console.log('job', job);
     const tagStyle = {margin: '5px', display: 'inline-block'};
     const tagsStyle = {width: '100%'};
     return (
@@ -24,6 +25,9 @@ export default class Job extends React.Component {
             <span className="label label-primary">{job.date_publication}</span>
           </div>
           <div className="column col-6">
+            <h6>Nom du poste</h6>
+            <span className="label label-primary" style={{whiteSpace: 'normal'}}>{job.nom_du_poste}</span>
+            <div className="divider"></div>
             <h6>Lieu</h6>
             <span className="label label-primary">{job.lieu}</span>
             <div className="divider"></div>
