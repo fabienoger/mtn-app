@@ -8,6 +8,7 @@ import PageHeader           from '/imports/ui/components/PageHeader';
 import Resources            from '/imports/ui/components/resources/Resources';
 import jobsSample           from '/imports/api/jobs/jobs.json';
 import ScrollArrow          from '/imports/ui/components/ScrollArrow';
+import Footer               from '/imports/ui/components/Footer';
 
 
 export default class Home extends TrackerReact(React.Component) {
@@ -26,7 +27,7 @@ export default class Home extends TrackerReact(React.Component) {
 
   render() {
     if (!this.state.formations.ready()) {
-      return (<Loading />)
+      return (<Loading style={{paddingTop: "49%"}} />)
     }
     const formations = Formations.find({}).fetch();
     return (
@@ -35,6 +36,7 @@ export default class Home extends TrackerReact(React.Component) {
         <LeafletMap formations={formations} />
         <Resources />
         <ScrollArrow style={{color: "#FFF"}} top={true} />
+        <Footer />
       </div>
     )
   }

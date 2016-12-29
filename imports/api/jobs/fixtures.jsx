@@ -15,5 +15,5 @@ if (Jobs.find({}).count() != jobs.length) {
   _.each(jobs, job => {
     Jobs.insert(job);
   });
+  console.log("End insert jobs");
 }
-console.log("End insert jobs");

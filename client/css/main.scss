@@ -192,6 +192,16 @@ div.resources {
   }
 }
 
+div.footer {
+  border-top: 1px solid $orange;
+  background-color: #1A1B1C;
+  padding: 10px 0;
+  p.headband {
+    margin: 0 10px;
+    color: $orange;
+  }
+}
+
 /* Search style */
 /* Modal style */
 div#search-modal.modal {
