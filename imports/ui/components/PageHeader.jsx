@@ -1,12 +1,14 @@
-import React              from 'react';
-import Scroll             from 'react-scroll';
+import React       from 'react';
+import ScrollArrow from '/imports/ui/components/ScrollArrow';
 
 export default class PageHeader extends React.Component {
-
-  scrollDown(e) {
-    Scroll.animateScroll.scrollToBottom();
-  }
   render() {
+    const widthDivided = ($(window).width() - 30) / 2;
+    const arrowStyle = {
+      position: "absolute",
+      bottom: "0",
+      left: widthDivided
+    };
     return (
       <div id="page-header">
         <div className="backgroundImg" style={{height: '30%'}}>
@@ -25,9 +27,7 @@ export default class PageHeader extends React.Component {
               <p className="text-center">C’est l’objectif principal de notre plateforme : vous renseigner, rendre très visuel la localisation des formations Grande École du Numérique (GEN) et vous montrer les opportunités de travail qu’elles peuvent vous apporter.</p>
             </div>
           </div>
-          <div className="centered arrow-wrapper" ref="arrowWrapper" onClick={this.scrollDown.bind(this)}>
-            <i className="fa fa-angle-double-down fa-3x" aria-hidden="true"></i>
-          </div>
+          <ScrollArrow style={arrowStyle} top={false} />
         </div>
       </div>
     )

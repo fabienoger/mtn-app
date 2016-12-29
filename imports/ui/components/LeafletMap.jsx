@@ -8,6 +8,8 @@ import SearchWrapper      from '/imports/ui/components/SearchWrapper';
 import SearchResult       from '/imports/ui/components/SearchResult';
 import JobModal           from '/imports/ui/components/JobModal';
 import Loading            from '/imports/ui/components/Loading';
+import ScrollArrow        from '/imports/ui/components/ScrollArrow';
+
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
@@ -167,12 +169,21 @@ export default class LeafletMap extends React.Component {
       height: "100%",
       width: "100%"
     };
+    const widthDivided = ($(window).width() - 30) / 2;
+    const arrowStyle = {
+      position: "absolute",
+      bottom: "0",
+      left: widthDivided,
+      color: "#181a34"
+    };
 
     return(
       <div id="map-container" style={mapContainerStyle}>
         <SearchWrapper searchResult={this.searchResult.bind(this)} />
         {this.state.formations ?
-          <SearchResult formations={this.state.formations} jobs={this.state.jobs} clearAndAddFormations={this.clearAndAddFormations.bind(this)}/>
+          <SearchResult formations={this.state.formations} jobs={this.state.jobs}
+            clearAndAddFormations={this.clearAndAddFormations.bind(this)}
+          />
         : ''}
         <div id="LeafletMap" style={mapStyle}></div>
         {this.state.formation ?
@@ -182,8 +193,11 @@ export default class LeafletMap extends React.Component {
           />
         : ''}
         {this.state.job ?
-          <JobModal job={this.state.job} onKeyPress={this.closeModal.bind(this)} closeModal={this.closeModal.bind(this)} />
+          <JobModal job={this.state.job} onKeyPress={this.closeModal.bind(this)}
+            closeModal={this.closeModal.bind(this)}
+          />
         : ''}
+        <ScrollArrow style={arrowStyle} top={false} />
       </div>
     )
   }

@@ -17,6 +17,7 @@ $spectre: #5764c6;
 /* Site style */
 html, body, main, div#react-root, div#react-root > div:nth-child(1) {
   height: 100%;
+  background-color: $p-color;
 }
 
 /* Scroll Arrow */
@@ -222,6 +223,12 @@ div#search-modal.modal {
         }
       }
     }
+    div.presentation-wrapper {
+      div.presentation {
+        padding-top: 220px;
+        padding-bottom: 0;
+      }
+    }
   }
 }
 
@@ -231,9 +238,12 @@ div#search-modal.modal {
       height: 0 !important;
     }
     div.presentation-wrapper {
-      height: 100% !important;
-      div.text {
-        width: 80% !important;
+      div.presentation {
+        padding-top: 200px;
+        padding-bottom: 0px;
+        div.text {
+          width: 80% !important;
+        }
       }
     }
   }

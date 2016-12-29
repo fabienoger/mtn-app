@@ -7,6 +7,7 @@ import Loading              from '/imports/ui/components/Loading';
 import PageHeader           from '/imports/ui/components/PageHeader';
 import Resources            from '/imports/ui/components/resources/Resources';
 import jobsSample           from '/imports/api/jobs/jobs.json';
+import ScrollArrow          from '/imports/ui/components/ScrollArrow';
 
 
 export default class Home extends TrackerReact(React.Component) {
@@ -33,6 +34,7 @@ export default class Home extends TrackerReact(React.Component) {
         <PageHeader />
         <LeafletMap formations={formations} />
         <Resources />
+        <ScrollArrow style={{color: "#FFF"}} top={true} />
       </div>
     )
   }
