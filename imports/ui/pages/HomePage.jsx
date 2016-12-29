@@ -5,6 +5,7 @@ import Jobs                 from '/imports/api/jobs/collection'
 import LeafletMap           from '/imports/ui/components/LeafletMap';
 import Loading              from '/imports/ui/components/Loading';
 import PageHeader           from '/imports/ui/components/PageHeader';
+import Resources            from '/imports/ui/components/resources/Resources';
 import jobsSample           from '/imports/api/jobs/jobs.json';
 
 
@@ -31,6 +32,7 @@ export default class Home extends TrackerReact(React.Component) {
       <div id="home-page" style={{height: '100%'}}>
         <PageHeader />
         <LeafletMap formations={formations} />
+        <Resources />
       </div>
     )
   }
