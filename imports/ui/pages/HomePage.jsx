@@ -6,7 +6,6 @@ import LeafletMap           from '/imports/ui/components/LeafletMap';
 import Loading              from '/imports/ui/components/Loading';
 import PageHeader           from '/imports/ui/components/PageHeader';
 import Resources            from '/imports/ui/components/resources/Resources';
-import jobsSample           from '/imports/api/jobs/jobs.json';
 import ScrollArrow          from '/imports/ui/components/ScrollArrow';
 import Footer               from '/imports/ui/components/Footer';
 

@@ -14,13 +14,19 @@ export default class Job extends React.Component {
             <h6>Entreprise</h6>
             <p>{job.entreprise}</p>
             <div className="divider"></div>
-            <h6>Tags</h6>
-            <div className="tags" style={tagsStyle}>
-              {job.tags.map((tag) => {
-                return (<span key={tag} className="label label-primary" style={tagStyle}>{tag}</span>)
-              })}
-            </div>
-            <div className="divider"></div>
+            {job.tags ?
+              job.tags.length > 0 ?
+                <div>
+                  <h6>Tags</h6>
+                  <div className="tags" style={tagsStyle}>
+                    {job.tags.map((tag) => {
+                      return (<span key={tag} className="label label-primary" style={tagStyle}>{tag}</span>)
+                    })}
+                  </div>
+                  <div className="divider"></div>
+                </div>
+              : ''
+            : ''}
             <h6>Date publication</h6>
             <span className="label label-primary">{job.date_publication}</span>
           </div>

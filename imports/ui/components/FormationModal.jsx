@@ -7,6 +7,12 @@ import keydown            from 'react-keydown';
 import outsideClick       from 'outside-click';
 
 class FormationModal extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: false
+    }
+  }
   componentDidMount () {
     const element = ReactDOM.findDOMNode(this.refs.formationModalContainer);
     // Add the listener
@@ -22,7 +28,15 @@ class FormationModal extends React.Component {
       this.props.closeModal();
     }
   }
+
+  displayFormationJobs() {
+    this.setState({loading: true});
+    this.props.displayFormationJobs();
+  }
+
   render() {
+    let btnJobsClass = `btn btn-primary`;
+    btnJobsClass += this.state.loading ? ' loading' : '';
     return (
       <div id="formationModal" className="modal active">
         <div className="modal-overlay"></div>
@@ -39,7 +53,7 @@ class FormationModal extends React.Component {
             </div>
           </div>
           <div className="modal-footer">
-            <button className="btn btn-primary" onClick={this.props.displayFormationJobs.bind(this)}>Afficher les offres d'emploi</button>
+            <button className={btnJobsClass} onClick={this.displayFormationJobs.bind(this)}>Afficher les offres d'emploi</button>
             <a className="btn website" target="_blank" href={this.props.formation.site}>Site web</a>
             <button className="btn btn-primary" onClick={this.props.closeModal}>Fermer</button>
           </div>

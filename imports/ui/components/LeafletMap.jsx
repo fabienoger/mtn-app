@@ -86,23 +86,27 @@ export default class LeafletMap extends React.Component {
     }
     let jobsStr = formation.metier.split(",");
     let jobs = [];
-    _.each(jobsStr, jobStr => {
-      _.each(Jobs.find({job_title_scrap: {$regex: jobStr.trim(), $options : 'i'}}).fetch(), job => {
-        jobs.push(job);
+    Meteor.call("getJobs", "developpeur", "Paris", formation.languages, (err, result) => {
+      if (err) {
+        console.error("getJobs", err);
+      }
+      // Join multiple jobs data
+      let jobs = result.data.data;
+      // Add jobs to Map
+      this.addJobsMarkers(jobs);
+      this.map.fitBounds(this.markerCluster.getBounds());
+      this.setState({jobs}, () => {
+        this.closeModal();
+        return jobs;
       });
     });
-    return jobs;
   }
 
   // Get jobs and add formations and Jobs markers close modal and fitbounds
   displayFormationJobs(e) {
     const formation = this.state.formation;
-    const jobs = this.getJsonFromFormation(formation);
-    this.setState({jobs});
+    this.getJsonFromFormation(formation);
     this.addFormations([this.state.formation]);
-    this.addJobsMarkers(jobs);
-    this.closeModal();
-    this.map.fitBounds(this.markerCluster.getBounds());
   }
 
   // Clear markers and add default formations
@@ -110,7 +114,7 @@ export default class LeafletMap extends React.Component {
     this.setState({
       formations: this.props.formations,
       jobs: []
-    })
+    });
     this.addFormations(this.props.formations);
     this.map.fitBounds(this.markerCluster.getBounds());
   }

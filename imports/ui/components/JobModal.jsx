@@ -41,6 +41,9 @@ class JobModal extends React.Component {
             </div>
           </div>
           <div className="modal-footer">
+            {this.props.job.href ?
+              <a className="btn website" target="_blank" href={this.props.job.href} style={{marginRight: "5px"}}>Site web</a>
+            : ''}
             <button className="btn btn-primary" onClick={this.props.closeModal}>Fermer</button>
           </div>
         </div>
