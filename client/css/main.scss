@@ -195,6 +195,18 @@ div.footer {
     margin: 0 10px;
     color: $orange;
   }
+  ul {
+    list-style-type: none;
+    li {
+      color: #FFF;
+    }
+  }
+  ul.site-map {
+    li {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
 }
 
 /* Search style */
