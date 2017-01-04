@@ -61,7 +61,7 @@ export default class search extends React.Component {
   }
   render() {
     const selectData = [
-       {id: 1, text: 'JS'},
+       {id: 1, text: 'javascript'},
        {id: 2, text: 'PHP'},
        {id: 3, text: 'JAVA'},
        {id: 4, text: 'HTML'},
