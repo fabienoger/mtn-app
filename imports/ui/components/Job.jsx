@@ -27,20 +27,36 @@ export default class Job extends React.Component {
                 </div>
               : ''
             : ''}
-            <h6>Date publication</h6>
-            <span className="label label-primary">{job.date_publication}</span>
+            {job.date_publication ?
+              <div>
+                <h6>Date publication</h6>
+                <span className="label label-primary">{job.date_publication}</span>
+              </div>
+            : ''}
           </div>
           <div className="column col-6">
             <h6>Nom du poste</h6>
             <span className="label label-primary" style={{whiteSpace: 'normal'}}>{job.nom_du_poste}</span>
-            <div className="divider"></div>
-            <h6>Lieu</h6>
-            <span className="label label-primary">{job.lieu}</span>
-            <div className="divider"></div>
-            <h6>Salaire <span className="label label-primary float-right">{job.salaire}</span></h6>
-            <div className="divider"></div>
-            <h6>Type de contrat</h6>
-            <span className="label label-primary">{job.type_de_contrat}</span>
+            {job.lieu ?
+              <div>
+                <div className="divider"></div>
+                <h6>Lieu</h6>
+                <span className="label label-primary">{job.lieu}</span>
+              </div>
+            : ''}
+            {job.salaire ?
+              <div>
+                <div className="divider"></div>
+                <h6>Salaire <span className="label label-primary float-right">{job.salaire}</span></h6>
+              </div>
+            : ''}
+            {job.type_de_contrat ?
+              <div>
+                <div className="divider"></div>
+                <h6>Type de contrat</h6>
+                <span className="label label-primary">{job.type_de_contrat}</span>
+              </div>
+            : ''}
           </div>
         </div>
       </div>
