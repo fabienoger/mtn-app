@@ -23,6 +23,7 @@ export default class Footer extends React.Component {
                 <ul>
                   <li><a href="http://www.dataforgood.fr/" target="_blank">DataForGood</a></li>
                   <li><a href="http://simplon.co/" target="_blank">Simplon.co</a></li>
+                  <li><a href="https://github.com/fabienoger/mtn-app" target="_blank">GitHub</a></li>
                 </ul>
               </div>
               <div className="column col-4">

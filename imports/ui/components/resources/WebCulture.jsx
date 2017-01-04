@@ -1,5 +1,6 @@
 import React    from 'react';
 import Resource from '/imports/ui/components/resources/Resource';
+import Download           from '/imports/ui/components/Download';
 
 export default class Careers extends React.Component {
   render() {
@@ -17,7 +18,7 @@ export default class Careers extends React.Component {
         <div className="columns text-center">
           <Resource title="Maker/Fab Manager " video={false} img="/images/m__tiernum.png" url="https://www.youtube.com//embed/Dw7AioKDfA4" />
           <Resource title="Un mooc, c’est quoi ?" video={false} img="/images/transfonum.png" url="https://www.youtube.com/embed/nmAX8mClOo8" />
-          // <Resource title="Architecte en Technologie Numérique" video={false} img="/images/c_est quoi ce taff.png" url="https://www.youtube.com/embed/RdldfkpEqr8" />
+          <Download />
         </div>
         </div>
       </div>
