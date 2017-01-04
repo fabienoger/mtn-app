@@ -179,6 +179,12 @@ div#formationModal {
 div.resources {
   background-color: $p-color;
   color: #FFF;
+
+div.resources, .video {
+  background-color: #363b75
+;
+}
+
   div.careers, div.web-culture {
     h1 {
       margin-top: 0;
@@ -219,6 +225,16 @@ div#search-modal.modal {
     }
   }
 }
+
+.resources{
+ img{
+  height: 180px;
+  width: 280px;
+  }
+}
+
+
+
 
 @media screen and (max-height: 515px) {
   div#page-header {
