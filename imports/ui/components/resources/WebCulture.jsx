@@ -5,16 +5,20 @@ export default class Careers extends React.Component {
   render() {
     return (
       <div className="web-culture container">
-        <h1 className="text-center">Culture Web</h1>
-        <div className="columns">
-          <Resource title="Développeur Web" url="https://www.youtube.com/embed/6ALDzbxuk3g" />
-          <Resource title="Intégrateur Web" url="https://www.youtube.com/embed/PVJ7zC1z7fU" />
-          <Resource title="Web Designer" url="https://www.youtube.com/embed/tSSduv5dEPg" />
+        <div className="header">
+          <h1 className="text-center">Culture Web</h1>
         </div>
-        <div className="columns">
-          <Resource title="Maker" url="https://www.youtube.com/embed/tSSduv5dEPg" />
-          <Resource title="Médiateur Numérique" url="https://www.youtube.com/embed/nmAX8mClOo8" />
-          <Resource title="Architecte en Technologie Numérique" url="https://www.youtube.com/embed/RdldfkpEqr8" />
+        <div className="video">
+        <div className="columns text-center">
+          <Resource title="Comment ça marche internet ?"  video={false} img="/images/comment_internet.png" url="https://www.youtube.com/embed/6ALDzbxuk3g" />
+          <Resource title="Qu’est-ce que la transformation numérique ?" video={false} img="/images/comprendreweb.jpg" url="https://www.youtube.com/embed/PVJ7zC1z7fU" />
+          <Resource title="Comprendre le web - OpenClassrooms " video={false} img="/images/web.jpg" url="https://www.youtube.com/embed/tSSduv5dEPg" />
+        </div>
+        <div className="columns text-center">
+          <Resource title="Maker/Fab Manager " video={false} img="/images/m__tiernum.png" url="https://www.youtube.com//embed/Dw7AioKDfA4" />
+          <Resource title="Un mooc, c’est quoi ?" video={false} img="/images/transfonum.png" url="https://www.youtube.com/embed/nmAX8mClOo8" />
+          // <Resource title="Architecte en Technologie Numérique" video={false} img="/images/c_est quoi ce taff.png" url="https://www.youtube.com/embed/RdldfkpEqr8" />
+        </div>
         </div>
       </div>
     )
